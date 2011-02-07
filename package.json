@@ -1,0 +1,24 @@
+{
+    "name" : "syslog",
+    "description" : "Syslog parser and producer",
+    "version" : "0.01",
+    "main" : "./syslog",
+    "author" : "Squeeks",
+    "maintainers" : [
+        {
+            "name" : "Squeeks",
+            "email" : "privacymyass@gmail.com"
+        }
+    ],
+    "directories": {
+	"lib": "./lib",
+	"test": "./test"
+    },
+    "main": "./lib/syslog",
+    "licenses" : [
+        {
+            "type": "MIT",
+            "url": "http://www.opensource.org/license/mit-license.php"
+        }
+    ]
+}
