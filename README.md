@@ -10,7 +10,7 @@ consumer, relay or something else entirely.
 Usage
 -------
 
-    var syslogParser = require('glossy').Parse; // or wherever your syslog libs are
+    var syslogParser = require('glossy').Parse; // or wherever your glossy libs are
     
     parsedMessage = syslogParser.parse(message);
 
