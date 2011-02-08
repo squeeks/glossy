@@ -42,6 +42,15 @@ Handle incoming syslog messages coming in on UDP port 514:
     server.bind('514');
 
 
+TODO
+-------
+* Full producer support
+* Better completion of test suite
+* Decoding structured data
+* Support for signed messages (RFC 5848)
+* Better parsing of app_id/service/pid from RFC 5424 messages
+
+
 Author
 -------
 
