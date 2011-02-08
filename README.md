@@ -23,7 +23,7 @@ Parsing Example
 
 Handle incoming syslog messages coming in on UDP port 514:
 
-    var syslogParser = require('syslog').Parse; // or wherever your glossy libs are
+    var syslogParser = require('glossy').Parse; // or wherever your glossy libs are
     var dgram  = require("dgram");
     var server = dgram.createSocket("udp4");
     
