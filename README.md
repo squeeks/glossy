@@ -1,7 +1,7 @@
-node-syslog
+glossy
 ===========
 
-node-syslog aims to be a very generic yet powerful library for both producing 
+glossy aims to be a very generic yet powerful library for both producing
 and also parsing raw syslog messages. The library aims to be capable of
 adhearing to both RFC 3164 and RFC 5424 and by itself does no network
 interactions, it's up to you to use this library as a syslog producer, a
@@ -10,7 +10,7 @@ consumer, relay or something else entirely.
 Usage
 -------
 
-    var syslogParser = require('syslog').Parse; // or wherever your syslog libs are
+    var syslogParser = require('glossy').Parse; // or wherever your syslog libs are
     
     parsedMessage = syslogParser.parse(message);
 
@@ -23,7 +23,7 @@ Parsing Example
 
 Handle incoming syslog messages coming in on UDP port 514:
 
-    var syslogParser = require('syslog').Parse; // or wherever your syslog libs are
+    var syslogParser = require('syslog').Parse; // or wherever your glossy libs are
     var dgram  = require("dgram");
     var server = dgram.createSocket("udp4");
     

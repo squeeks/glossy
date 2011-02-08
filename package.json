@@ -1,8 +1,8 @@
 {
-    "name" : "syslog",
+    "name" : "glossy",
     "description" : "Syslog parser and producer",
     "version" : "0.01",
-    "main" : "./syslog",
+    "main" : "./glossy",
     "author" : "Squeeks",
     "maintainers" : [
         {
