@@ -1,8 +1,45 @@
 node-syslog
 ===========
 
-node-syslog aims to be a very generic yet powerful library for both generating
-and also parsing raw syslog style messages.
+node-syslog aims to be a very generic yet powerful library for both producing 
+and also parsing raw syslog messages. The library aims to be capable of
+adhearing to both RFC 3164 and RFC 5424 and by itself does no network
+interactions, it's up to you to use this library as a syslog producer, a
+consumer, relay or something else entirely.
+
+Usage
+-------
+
+    var syslogParser = require('syslog').Parse; // or wherever your syslog libs are
+    
+    parsedMessage = syslogParser.parse(message);
+
+parsedMessage will return an object containing as many parsed values as
+possible, as well as the original message. The date value will be a Date object.
+
+
+Parsing Example
+-------
+
+Handle incoming syslog messages coming in on UDP port 514:
+
+    var syslogParser = require('syslog').Parse; // or wherever your syslog libs are
+    var dgram  = require("dgram");
+    var server = dgram.createSocket("udp4");
+    
+    server.on("message", function(rawMessage) {
+    	syslogParser.parse(rawMessage, function(parsedMessage){
+    		console.log(parsedMessage.host + ' - ' + parsedMessage.message);
+    	});
+    });
+    
+    server.on("listening", function() {
+    	var address = server.address();
+    	console.log("Server now listening at " + 
+     		address.address + ":" + address.port);
+    });
+    
+    server.bind('514');
 
 
 Author
