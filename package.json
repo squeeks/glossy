@@ -2,7 +2,7 @@
     "name" : "glossy",
     "description" : "Syslog parser and producer",
     "version" : "0.01",
-    "main" : "./glossy",
+    "main" : "./index.js",
     "author" : "Squeeks",
     "maintainers" : [
         {
