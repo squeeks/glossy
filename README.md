@@ -7,7 +7,8 @@ adhearing to both RFC 3164 and RFC 5424 and by itself does no network
 interactions, it's up to you to use this library as a syslog producer, a
 consumer, relay or something else entirely.
 
-Usage
+
+Parsing
 -------
 
     var syslogParser = require('glossy').Parse; // or wherever your glossy libs are
@@ -16,11 +17,47 @@ Usage
 
 parsedMessage will return an object containing as many parsed values as
 possible, as well as the original message. The date value will be a Date object.
+Alternatively, you can give it a callback as your second argument:
+
+    syslogParser.parse(message, function(parsedMessage){
+        console.log(parsedMessage);
+    });
+
+
+Producing
+-------
+Unless you stipulate for BSD/RFC 3164 style messages, it will default to
+generating all messages as newer, RFC 5424 format. This might break consumers or
+relays not expecting it.
+
+    var syslogProducer = require('glossy').Produce; // or wherever glossy lives
+    var producer = new syslog.Producer('BSD');
+
+    var msg = syslogProducer.produce({
+        facility: 'local4', // these can either be a valid integer, 
+        severity: 'error',  // or a relevant string
+        host: 'localhost',
+        app_id: 'sudo',
+        pid: '123',
+        date: new Date(Date()),
+        message: 'Nice, Neat, New, Oh Wow'
+    });
+
+Again, you can specify a callback for the second argument.
+
+    var msg = syslogProducer.produce({
+        facility: 'ntp', 
+        severity: 'info',
+	host: 'localhost',
+        date: new Date(Date()),
+        message: 'Lunch Time!'
+    }, function(syslogMsg){
+    	console.log(syslogMsg);
+    });
 
 
 Parsing Example
 -------
-
 Handle incoming syslog messages coming in on UDP port 514:
 
     var syslogParser = require('glossy').Parse; // or wherever your glossy libs are
@@ -44,7 +81,6 @@ Handle incoming syslog messages coming in on UDP port 514:
 
 TODO
 -------
-* Full producer support
 * Better completion of test suite
 * Decoding structured data
 * Support for signed messages (RFC 5848)
@@ -53,12 +89,10 @@ TODO
 
 Author
 -------
-
 Squeeks - privacymyass@gmail.com
 
 
 License
 -------
-
 This is free software licensed under the MIT License - see the LICENSE file that
 should be included with this package.
