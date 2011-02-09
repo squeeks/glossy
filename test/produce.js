@@ -33,4 +33,3 @@ syslogProducer.produce({
 	assert.equal(cbMsg, '<107>1 2009-01-13T23:31:30.00Z 127.0.0.1 sudo 419 - Test Message', 'Valid message in callback returned');
 });
 
-
