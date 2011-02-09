@@ -28,7 +28,7 @@ Handle incoming syslog messages coming in on UDP port 514:
     var server = dgram.createSocket("udp4");
     
     server.on("message", function(rawMessage) {
-    	syslogParser.parse(rawMessage, function(parsedMessage){
+        syslogParser.parse(rawMessage.toString('utf8', 0), function(parsedMessage){
     		console.log(parsedMessage.host + ' - ' + parsedMessage.message);
     	});
     });
@@ -39,7 +39,7 @@ Handle incoming syslog messages coming in on UDP port 514:
      		address.address + ":" + address.port);
     });
     
-    server.bind('514');
+    server.bind(514);
 
 
 TODO
