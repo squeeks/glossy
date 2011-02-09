@@ -1,9 +1,12 @@
 {
     "name" : "glossy",
     "description" : "Syslog parser and producer",
-    "version" : "0.01",
-    "main" : "./index.js",
-    "author" : "Squeeks",
+    "url": "http://github.com/squeeks/glossy",
+    "version" : "0.0.1",
+    "modules" : {
+        "index" : "./index.js"
+    },
+    "author" : "Squeeks <privacymyass@gmail.com>",
     "maintainers" : [
         {
             "name" : "Squeeks",
@@ -14,10 +17,15 @@
 	"lib": "./lib",
 	"test": "./test"
     },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/squeeks/glossy.git"
+  },    
     "licenses" : [
         {
             "type": "MIT",
             "url": "http://www.opensource.org/license/mit-license.php"
         }
-    ]
+    ],
+    "engines": { "node": ">= 0.2.5" }
 }
