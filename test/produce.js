@@ -44,5 +44,5 @@ BSDProducer.produce({
 	date: new Date(1234567890000),
 	message: 'Test Message'
 }, function(cbMsg){
-	assert.equal(cbMsg, '<107> Jan 13 23:31:30 127.0.0.1 sudo[419]: - Test Message');
+	assert.equal(cbMsg, '<107> Feb 13 23:31:30 127.0.0.1 sudo[419]: - Test Message');
 });
