@@ -31,9 +31,9 @@ generating all messages as newer, RFC 5424 format. This might break consumers or
 relays not expecting it.
 
     var syslogProducer = require('glossy').Produce; // or wherever glossy lives
-    var producer = new syslog.Producer('BSD');
+    var glossy = new syslog.Producer('BSD');
 
-    var msg = syslogProducer.produce({
+    var msg = glossy.produce({
         facility: 'local4', // these can either be a valid integer, 
         severity: 'error',  // or a relevant string
         host: 'localhost',
@@ -45,7 +45,7 @@ relays not expecting it.
 
 Again, you can specify a callback for the second argument.
 
-    var msg = syslogProducer.produce({
+    var msg = glossy.produce({
         facility: 'ntp', 
         severity: 'info',
 	host: 'localhost',
@@ -76,7 +76,7 @@ Handle incoming syslog messages coming in on UDP port 514:
      		address.address + ":" + address.port);
     });
     
-    server.bind(514);
+    server.bind(514); // Remember ports < 1024 need root
 
 
 TODO
