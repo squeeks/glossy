@@ -31,7 +31,7 @@ generating all messages as newer, RFC 5424 format. This might break consumers or
 relays not expecting it.
 
     var syslogProducer = require('glossy').Produce; // or wherever glossy lives
-    var glossy = new syslog.Producer('BSD');
+    var glossy = new syslog.Producer({ type: 'BSD' });
 
     var msg = glossy.produce({
         facility: 'local4', // these can either be a valid integer, 
