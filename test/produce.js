@@ -5,11 +5,21 @@ assert.ok(producer, 'producer loaded');
 
 var syslogProducer = new producer();
 assert.ok(syslogProducer, 'new SyslogProducer object created');
-assert.equal(syslogProducer.messageFormat, 'RFC5424', 'Syslog Producer set correctly');
+assert.equal(syslogProducer.type, 'RFC5424', 'Syslog Producer set correctly');
 
-var BSDProducer = new producer('BSD');
+var BSDProducer = new producer({ type: 'BSD'});
 assert.ok(BSDProducer, 'new BSDProducer object created');
-assert.equal(BSDProducer.messageFormat, 'RFC3164', 'BSD Producer set correctly');
+assert.equal(BSDProducer.type, 'RFC3164', 'BSD Producer set correctly');
+
+var presetProducer = new producer({
+	type:     'bsd',
+	facility: 'ntp',
+	host:     'localhost',
+	app_id:   'kill'
+});
+
+assert.ok(presetProducer, 'new producer with defined settings created');
+assert.equal(presetProducer.host,'localhost', 'host preset defined' );
 
 var msg = syslogProducer.produce({
 	facility: 'local4',
@@ -44,5 +54,7 @@ BSDProducer.produce({
 	date: new Date(1234567890000),
 	message: 'Test Message'
 }, function(cbMsg){
-	assert.equal(cbMsg, '<107> Feb 13 23:31:30 127.0.0.1 sudo[419]: - Test Message');
+	assert.equal(cbMsg, '<107>Feb 13 23:31:30 127.0.0.1 sudo[419]: - Test Message');
 });
+
+
