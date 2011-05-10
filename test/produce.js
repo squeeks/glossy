@@ -17,9 +17,14 @@ var presetProducer = new producer({
 	host:     'localhost',
 	app_id:   'kill'
 });
-
 assert.ok(presetProducer, 'new producer with defined settings created');
 assert.equal(presetProducer.host,'localhost', 'host preset defined' );
+
+var invalidProducer = new producer({
+	type: 'invalid',
+	facility: 'invalid',
+});
+assert.notEqual(invalidProducer, 'invalid producer is null');
 
 var msg = syslogProducer.produce({
 	facility: 'local4',
@@ -57,4 +62,75 @@ BSDProducer.produce({
 	assert.equal(cbMsg, '<107>Feb 13 23:31:30 127.0.0.1 sudo[419]: - Test Message');
 });
 
+var debugMsg = presetProducer.debug({
+	facility: 'local2',
+	message: 'Debug Message',
+	date: new Date(1234567890000),	
+	pid: 91
+});
+assert.ok(debugMsg);
+assert.equal(debugMsg, '<151>Feb 13 23:31:30 localhost kill[91]: - Debug Message');
+
+var infoMsg = presetProducer.info({
+	facility: 'ntp',
+	message: 'Info Message',
+	pid: 42,
+	date: new Date(1234567890000)
+});
+assert.ok(infoMsg);
+assert.equal(infoMsg, '<102>Feb 13 23:31:30 localhost kill[42]: - Info Message');
+
+var noticeMsg = presetProducer.debug({
+	facility: 'local2',
+	message: 'Notice Message',
+	pid: 16,
+	date: new Date(1234567890000)
+});
+assert.ok(noticeMsg);
+assert.equal(noticeMsg, '<151>Feb 13 23:31:30 localhost kill[16]: - Notice Message');
+
+var warnMsg = presetProducer.debug({
+	facility: 'local4',
+	message: 'Warning Message',
+	pid: 91,
+	date: new Date(1234567890000)
+});
+assert.ok(warnMsg);
+assert.equal(warnMsg, '<167>Feb 13 23:31:30 localhost kill[91]: - Warning Message');
+
+var errorMsg = presetProducer.debug({
+	facility: 'clock',
+	message: 'Error Message',
+	pid: 91,
+	date: new Date(1234567890000)
+});
+assert.ok(errorMsg);
+assert.equal(errorMsg, '<127>Feb 13 23:31:30 localhost kill[91]: - Error Message');
+
+var criticalMsg = presetProducer.debug({
+	facility: 'local0',
+	message: 'Critical Message',
+	pid: 91,
+	date: new Date(1234567890000)
+});
+assert.ok(criticalMsg);
+assert.equal(criticalMsg, '<135>Feb 13 23:31:30 localhost kill[91]: - Critical Message');
+
+var alertMsg = presetProducer.debug({
+	facility: 'clock',
+	message: 'Alert Message',
+	pid: 91,
+	date: new Date(1234567890000)
+});
+assert.ok(alertMsg);
+assert.equal(alertMsg, '<127>Feb 13 23:31:30 localhost kill[91]: - Alert Message');
+
+var emergencyMsg = presetProducer.debug({
+	facility: 'news',
+	message: 'Emergency Message',
+	pid: 91,
+	date: new Date(1234567890000)
+});
+assert.ok(emergencyMsg);
+assert.equal(emergencyMsg, '<63>Feb 13 23:31:30 localhost kill[91]: - Emergency Message');
 
