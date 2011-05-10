@@ -55,6 +55,24 @@ Again, you can specify a callback for the second argument.
     	console.log(syslogMsg);
     });
 
+In addition, you can also predefined most of the values when you create the
+object, to save having to repeat yourself:
+
+    var glossy = new syslog.Producer({
+        type: 'BSD',
+        facility: 'ftp',
+        pid: 42,
+        host: '::1'        
+    });
+
+Finally, we expose all the severities as functions themselves:
+
+    var infoMsg = glossy.info({
+       	message: 'Info Message',
+    });
+
+Function names facilitating this are named debug, info, notice, warn, crit,
+alert and emergency.
 
 Parsing Example
 -------
