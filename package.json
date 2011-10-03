@@ -2,7 +2,7 @@
     "name" : "glossy",
     "description" : "Syslog parser and producer",
     "url": "http://github.com/squeeks/glossy",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "main": "./index.js",
     "author" : "Squeeks <privacymyass@gmail.com>",
     "maintainers" : [
