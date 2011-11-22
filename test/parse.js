@@ -14,7 +14,7 @@ var messages = [
 ];
 
 for(message in messages) {
-	parsed = syslogParser.parse(message);
+	parsed = syslogParser.parse(messages[message]);
 	assert.ok(parsed);
 };
 
