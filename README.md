@@ -5,7 +5,9 @@ glossy aims to be a very generic yet powerful library for both producing
 and also parsing raw syslog messages. The library aims to be capable of
 adhearing to both RFC 3164 and RFC 5424 and by itself does no network
 interactions, it's up to you to use this library as a syslog producer, a
-consumer, relay or something else entirely.
+consumer, relay or something else entirely. In addition, glossy has no
+dependencies and can be bootstrapped to operate in browser or other non-node.js
+environments.
 
 
 Parsing
@@ -17,7 +19,8 @@ Parsing
 
 parsedMessage will return an object containing as many parsed values as
 possible, as well as the original message. The date value will be a Date object.
-Alternatively, you can give it a callback as your second argument:
+Structured data will return as an object. Alternatively, you can give it a
+callback as your second argument:
 
     syslogParser.parse(message, function(parsedMessage){
         console.log(parsedMessage);
@@ -94,15 +97,13 @@ Handle incoming syslog messages coming in on UDP port 514:
      		address.address + ":" + address.port);
     });
     
-    server.bind(514); // Remember ports < 1024 need root
+    server.bind(514); // Remember ports < 1024 need suid
 
 
 TODO
 -------
 * Better completion of test suite
-* Decoding structured data
 * Support for signed messages (RFC 5848)
-* Better parsing of app_id/service/pid from RFC 5424 messages
 
 
 Author
