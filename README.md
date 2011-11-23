@@ -51,11 +51,11 @@ Again, you can specify a callback for the second argument.
     var msg = glossy.produce({
         facility: 'ntp', 
         severity: 'info',
-	host: 'localhost',
+        host: 'localhost',
         date: new Date(Date()),
         message: 'Lunch Time!'
     }, function(syslogMsg){
-    	console.log(syslogMsg);
+        console.log(syslogMsg);
     });
 
 In addition, you can also predefined most of the values when you create the
@@ -68,10 +68,31 @@ object, to save having to repeat yourself:
         host: '::1'        
     });
 
+For RFC5424 messages, you can also include structured data. Keys should comply
+with the definition in [Section 7, RFC5424](http://tools.ietf.org/html/rfc5424#section-7) 
+regarding names - keep them unique and your own custom keys should have at least
+an @ sign.
+
+    var msg = glossy.produce({
+        facility: 'local4', 
+        severity: 'error',
+        host: 'localhost',
+        app_id: 'starman',
+        pid: '123',
+        date: new Date(Date()),
+        message: 'ACHTUNG!',
+        structuredData: {
+            'plack@host': {
+                status: 'broken',
+                hasTried: 'not really'
+            }
+        }
+    });
+
 Finally, we expose all the severities as functions themselves:
 
     var infoMsg = glossy.info({
-       	message: 'Info Message',
+           message: 'Info Message',
     });
 
 Function names facilitating this are named debug, info, notice, warn, crit,
@@ -87,14 +108,14 @@ Handle incoming syslog messages coming in on UDP port 514:
     
     server.on("message", function(rawMessage) {
         syslogParser.parse(rawMessage.toString('utf8', 0), function(parsedMessage){
-    		console.log(parsedMessage.host + ' - ' + parsedMessage.message);
-    	});
+            console.log(parsedMessage.host + ' - ' + parsedMessage.message);
+        });
     });
     
     server.on("listening", function() {
-    	var address = server.address();
-    	console.log("Server now listening at " + 
-     		address.address + ":" + address.port);
+        var address = server.address();
+        console.log("Server now listening at " + 
+            address.address + ":" + address.port);
     });
     
     server.bind(514); // Remember ports < 1024 need suid
