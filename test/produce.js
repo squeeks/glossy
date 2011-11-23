@@ -104,30 +104,31 @@ var errorMsg = presetProducer.debug({
 assert.ok(errorMsg);
 assert.equal(errorMsg, '<127>Feb 13 23:31:30 localhost kill[91]: Error Message');
 
-var criticalMsg = presetProducer.debug({
+var criticalMsg = presetProducer.crit({
 	facility: 'local0',
 	message: 'Critical Message',
 	pid: 91,
 	date: new Date(1234567890000)
 });
 assert.ok(criticalMsg);
-assert.equal(criticalMsg, '<135>Feb 13 23:31:30 localhost kill[91]: Critical Message');
+assert.equal(criticalMsg, '<130>Feb 13 23:31:30 localhost kill[91]: Critical Message');
 
-var alertMsg = presetProducer.debug({
+var alertMsg = presetProducer.alert({
 	facility: 'clock',
 	message: 'Alert Message',
 	pid: 91,
 	date: new Date(1234567890000)
 });
 assert.ok(alertMsg);
-assert.equal(alertMsg, '<127>Feb 13 23:31:30 localhost kill[91]: Alert Message');
+assert.equal(alertMsg, '<121>Feb 13 23:31:30 localhost kill[91]: Alert Message');
 
-var emergencyMsg = presetProducer.debug({
+var emergencyMsg = presetProducer.emergency({
 	facility: 'news',
 	message: 'Emergency Message',
 	pid: 91,
 	date: new Date(1234567890000)
 });
 assert.ok(emergencyMsg);
-assert.equal(emergencyMsg, '<63>Feb 13 23:31:30 localhost kill[91]: Emergency Message');
+assert.equal(emergencyMsg, '<56>Feb 13 23:31:30 localhost kill[91]: Emergency Message');
+
 
