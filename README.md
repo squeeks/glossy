@@ -124,8 +124,7 @@ Handle incoming syslog messages coming in on UDP port 514:
 TODO
 -------
 * Better completion of test suite
-* Support for signed messages (RFC 5848)
-
+* Performance analysis and improvements where possible
 
 Author
 -------
