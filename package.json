@@ -1,29 +1,30 @@
 {
-    "name" : "glossy",
+    "name"        : "glossy",
+    "version"     : "0.0.9",
     "description" : "Syslog parser and producer",
-    "url": "http://github.com/squeeks/glossy",
-    "version": "0.0.8",
-    "main": "./index.js",
-    "author" : "Squeeks <privacymyass@gmail.com>",
+    "keywords"    : ["syslog", "logging"],
+    "url"         : "http://github.com/squeeks/glossy",
+    "main"        : "./index.js",
+    "author"      : "Squeeks <privacymyass@gmail.com>",
     "maintainers" : [
-        {
-            "name" : "Squeeks",
-            "email" : "privacymyass@gmail.com"
-        }
+        { "name" : "Squeeks", "email" : "privacymyass@gmail.com" }
     ],
-    "directories": {
+    "contributors" : [
+	{ "name": "artifi", "email": "artifipl@gmail.com" }
+    ],
+    "directories" : {
 	"lib": "./lib",
 	"test": "./test"
     },
-  "repository": {
-    "type": "git",
-    "url": "http://github.com/squeeks/glossy.git"
-  },    
-    "licenses" : [
+    "repository"  : {
+        "type": "git",
+        "url": "http://github.com/squeeks/glossy.git"
+    },    
+    "licenses"    : [
         {
             "type": "MIT",
             "url": "http://www.opensource.org/license/mit-license.php"
         }
     ],
-    "engines": { "node": ">= 0.2.5" }
+    "engines"     : { "node": ">= 0.2.5" }
 }
