@@ -10,7 +10,9 @@
         { "name" : "Squeeks", "email" : "privacymyass@gmail.com" }
     ],
     "contributors" : [
-	{ "name": "artifi", "email": "artifipl@gmail.com" }
+        { "name": "artifi", "email": "artifipl@gmail.com" },
+        { "name": "Matt Bornski", "email": "matt@bornski.com" },
+        { "name": "Fyodor Y", "email": "fygrave@o0o.nu" }
     ],
     "directories" : {
 	"lib": "./lib",
