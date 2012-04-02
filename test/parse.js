@@ -5,6 +5,10 @@ assert.ok(syslogParser, 'parser loaded');
 
 //TODO: Add more edge cases and other shenanigans here
 var messages = [
+	'<191>94103: 51w2d: DHCPD: assigned IP address 10.10.1.94 to client 0100.01c4.21d3.b3',
+        'Mar 05 2011 22:21:02: %ASA-6-302013: Built inbound TCP connection 401 for outside:123.123.123.123/4413 (123.123.123.123/4413) to net:BOX/25 (BOX/25)',
+        '<32>Mar 16 15:10:26 SyslogAlertForwarder: Attack P2P: HotSpot Shield Traffic Detected (Medium)\u0000","',
+        '<13>Mar 15 11:22:40 myhost.com 	0	11,03/15/12,11:22:38,§ó·s,10.10.10.171,,40C6A91373B6,',
 	"<165>1 2003-08-24T05:14:15.000003-07:00 192.0.2.1 myproc 8710 - - %% It's time to make the do-nuts.",
 	'<165>1 2003-10-11T22:14:15.003Z mymachine.example.com evntslog - ID47 [exampleSDID@32473 iut="3" eventSource= "Application" eventID="1011"] BOMAn application event log entry...',
 	'<165>1 2003-10-11T22:14:15.003Z mymachine.example.com evntslog - ID47 [exampleSDID@32473 iut="3" eventSource= "Application" eventID="1011"][examplePriority@32473 class="high"] ',
