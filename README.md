@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/squeeks/glossy.png)](http://travis-ci.org/squeeks/glossy)
 glossy
 ===========
 
