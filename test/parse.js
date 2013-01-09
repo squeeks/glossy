@@ -41,3 +41,7 @@ syslogParser.parse(messages[1], function(secondParsed){
     assert.equal(secondParsed.host, 'mymachine.example.com', 'hostname matches');
 });
 
+syslogParser.parse(messages[4], function(rfc3164_before_10th){
+    assert.ok(rfc3164_before_10th, 'RFC 3164 record parsed.');
+    assert.equal(rfc3164_before_10th.host, '10.0.0.99');
+});
