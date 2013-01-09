@@ -40,7 +40,7 @@ relays not expecting it.
         facility: 'local4', // these can either be a valid integer, 
         severity: 'error',  // or a relevant string
         host: 'localhost',
-        app_id: 'sudo',
+        appName: 'sudo',
         pid: '123',
         date: new Date(Date()),
         message: 'Nice, Neat, New, Oh Wow'
@@ -77,7 +77,7 @@ an @ sign.
         facility: 'local4', 
         severity: 'error',
         host: 'localhost',
-        app_id: 'starman',
+        appName: 'starman',
         pid: '123',
         date: new Date(Date()),
         message: 'ACHTUNG!',
