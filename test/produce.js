@@ -15,7 +15,7 @@ var presetProducer = new producer({
     type:     'bsd',
     facility: 'ntp',
     host:     'localhost',
-    app_id:   'kill'
+    appName:   'kill'
 });
 
 var invalidProducer = new producer({
@@ -28,7 +28,7 @@ var msg = syslogProducer.produce({
     facility: 'local4',
     severity: 'error',
     host: 'localhost',
-    app_id: 'sudo',
+    appName: 'sudo',
     pid: '123',
     date: new Date(1234567890000),
     message: 'Test Message'
@@ -39,7 +39,7 @@ syslogProducer.produce({
     facility: 'audit',
     severity: 'error',
     host: '127.0.0.1',
-    app_id: 'sudo',
+    appName: 'sudo',
     pid: '419',
     date: new Date(1234567890000),
     message: 'Test Message'
@@ -51,7 +51,7 @@ BSDProducer.produce({
     facility: 'audit',
     severity: 'error',
     host: '127.0.0.1',
-    app_id: 'sudo',
+    appName: 'sudo',
     pid: '419',
     date: new Date(1234567890000),
     message: 'Test Message'
@@ -135,7 +135,7 @@ var structuredMsg = syslogProducer.produce({
     facility: 'local4',
     severity: 'error',
     host: 'mymachine.example.com',
-    app_id: 'evntslog',
+    appName: 'evntslog',
     msgID: 'ID47',
     date: new Date(1234567890000),
     structuredData: {
