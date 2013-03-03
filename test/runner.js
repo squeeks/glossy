@@ -1,4 +1,4 @@
-var spawn = require('child_process').spawn(),
+var spawn = require('child_process').spawn,
        fs = require('fs'),
  exitCode = 0,
   timeout = 10000;
@@ -6,13 +6,12 @@ var spawn = require('child_process').spawn(),
 fs.readdir(__dirname, function (e, files) {
   if(e) throw e;
 
-  var tests = files.filter(function (f) {return f.slice(0, 'test-'.length) === 'test-'});
+  var tests = files.filter(function (f) {return f.substr(-2) === 'js' && f != 'runner.js'});
 
   var next = function () {
-    if (tests.length === 0) process.exit(exitCode);
+    if(tests.length === 0) process.exit(exitCode); 
 
     var file = tests.shift();
-    console.log(file);
     var proc = spawn('node', [ 'test/' + file ]);
 
     var killed = false;
