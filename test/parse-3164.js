@@ -89,7 +89,6 @@ syslogParser.parse(withSpaces, function(parsedMessage){
         message: '    0    11,03/15/12,11:22:38,§ó·s,10.10.10.171,,40C6A91373B6,' };
 
     delete parsedMessage.time;
-    console.log(parsedMessage);
     assert.deepEqual(parsedMessage, expectedData);
 
 });
