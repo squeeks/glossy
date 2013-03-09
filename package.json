@@ -1,6 +1,6 @@
 {
     "name"        : "glossy",
-    "version"     : "0.1.3",
+    "version"     : "0.1.4",
     "description" : "Syslog parser and producer",
     "keywords"    : ["syslog", "logging"],
     "url"         : "http://github.com/squeeks/glossy",
