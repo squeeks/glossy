@@ -1,13 +1,12 @@
 glossy
 ===========
 
-glossy aims to be a very generic yet powerful library for both producing
-and also parsing raw syslog messages. The library aims to be capable of
-adhearing to both RFC 3164 and RFC 5424 and by itself does no network
-interactions, it's up to you to use this library as a syslog producer, a
-consumer, relay or something else entirely. In addition, glossy has no
-dependencies and can be bootstrapped to operate in browser or other non-node.js
-environments.
+glossy aims to be a very generic yet powerful library for both producing and
+also parsing raw syslog messages. The library aims to be capable of adhearing to
+RFC 3164, RFC 5424 and RFC 5848 and by itself does no network interactions, it's
+up to you to use this library as a syslog producer, a consumer, relay or
+something else entirely. In addition, glossy has no dependencies and can be
+bootstrapped to operate in browser or other non-node.js environments.
 
 
 Parsing
@@ -121,15 +120,9 @@ Handle incoming syslog messages coming in on UDP port 514:
     server.bind(514); // Remember ports < 1024 need suid
 
 
-TODO
--------
-* Better completion of test suite
-* Performance analysis and improvements where possible
-
 Author
 -------
 Squeeks - privacymyass@gmail.com
-
 
 License
 -------
