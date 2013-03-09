@@ -74,7 +74,7 @@ syslogParser.parse(withSD, function(parsedMessage){
 
 // FIXME 3 minute offset from UTC?!
 var withDoubleSD =  '<165>1 2003-10-11T22:14:15.003Z mymachine.example.com evntslog - ID47 [exampleSDID@32473 iut="3" eventSource="Application" eventID="1011"][examplePriority@32473 class="high"]';
-syslogParser.parse(withSD, function(parsedMessage){
+syslogParser.parse(withDoubleSD, function(parsedMessage){
     var expectedStructuredData = { 
         'exampleSDID@32473': { 
             iut: '3', 
@@ -100,8 +100,7 @@ syslogParser.parse(withSD, function(parsedMessage){
         pid: null,
         msgID: 'ID47',
         structuredData: expectedStructuredData,  //FIXME Both sets should be there
-        message: 'BOMAn application event log entry...' };
-
-    //assert.deepEqual(parsedMessage, expectedData);
+        message: '' };
+    assert.deepEqual(parsedMessage, expectedData);
 });
 
