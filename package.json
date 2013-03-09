@@ -19,10 +19,16 @@
 	"lib": "./lib",
 	"test": "./test"
     },
+    "scripts"     : {
+        "test": "node test/runner.js"
+    },
     "repository"  : {
         "type": "git",
         "url": "http://github.com/squeeks/glossy.git"
-    },    
+    },
+    "bugs"        : {
+        "url": "http://github.com/squeeks/glossy/issues"
+    },
     "licenses"    : [
         {
             "type": "MIT",
