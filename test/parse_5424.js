@@ -2,7 +2,6 @@ var syslogParser = require('../lib/glossy/parse.js'),
           assert = require('assert');
 
 assert.ok(syslogParser, 'parser loaded');
-
 var withPrecisionTime = "<165>1 2003-08-24T05:14:15.000003-07:00 192.0.2.1 myproc 8710 - - %% It's time to make the do-nuts.";
 syslogParser.parse(withPrecisionTime, function(parsedMessage){
     var expectedData = { 
@@ -12,6 +11,7 @@ syslogParser.parse(withPrecisionTime, function(parsedMessage){
         severityID: 5,
         facility: 'local4',
         severity: 'notice',
+        type: 'RFC5424',
         host: '192.0.2.1',
         appName: 'myproc',
         pid: '8710',
@@ -20,6 +20,7 @@ syslogParser.parse(withPrecisionTime, function(parsedMessage){
     
     delete parsedMessage.time;
     assert.deepEqual(parsedMessage, expectedData);
+
 });
 
 // FIXME 3 minute offset from UTC?!
@@ -32,6 +33,7 @@ syslogParser.parse(with8601, function(parsedMessage){
         severityID: 2,
         facility: 'auth',
         severity: 'crit',
+        type: 'RFC5424',
         time:  new Date('2003-10-11T22:14:15.003Z'),
         host: 'mymachine.example.com',
         appName: 'su',
@@ -52,23 +54,31 @@ syslogParser.parse(withSD, function(parsedMessage){
         severityID: 5,
         facility: 'local4',
         severity: 'notice',
+        type: 'RFC5424',
         time:  new Date('2003-10-11T22:14:15.003Z'),
         host: 'mymachine.example.com',
         appName: 'evntslog',
         pid: null,
         msgID: 'ID47',
-        structuredData: { 'exampleSDID@32473': { iut: '3', eventID: '1011' } }, //FIXME " shouldn't be there
+        structuredData: { 
+            'exampleSDID@32473': { 
+                iut: '3',
+                eventSource: 'Application',
+                eventID: '1011' 
+            } 
+        }, 
         message: 'BOMAn application event log entry...' };
 
-   // assert.deepEqual(parsedMessage, expectedData);
+    assert.deepEqual(parsedMessage, expectedData);
 });
 
 // FIXME 3 minute offset from UTC?!
-var withDoubleSD =  '<165>1 2003-10-11T22:14:15.003Z mymachine.example.com evntslog - ID47 [exampleSDID@32473 iut="3" eventSource="Application" eventID="1011"][examplePriority@32473 class="high"] ';
+var withDoubleSD =  '<165>1 2003-10-11T22:14:15.003Z mymachine.example.com evntslog - ID47 [exampleSDID@32473 iut="3" eventSource="Application" eventID="1011"][examplePriority@32473 class="high"]';
 syslogParser.parse(withSD, function(parsedMessage){
     var expectedStructuredData = { 
         'exampleSDID@32473': { 
-                iut: '3', 
+            iut: '3', 
+            eventSource: 'Application',
             eventID: '1011' 
          },
          'examplePriority@32473': {
@@ -83,6 +93,7 @@ syslogParser.parse(withSD, function(parsedMessage){
         severityID: 5,
         facility: 'local4',
         severity: 'notice',
+        type: 'RFC5424',
         time:  new Date('2003-10-11T22:14:15.003Z'),
         host: 'mymachine.example.com',
         appName: 'evntslog',
