@@ -102,7 +102,7 @@ var errorMsg = presetProducer.debug({
     date: new Date(1234567890000)
 });
 assert.ok(errorMsg);
-assert.equal(errorMsg, '<127>Feb 13 23:31:30 localhost kill[91]: Error Message');
+assert.equal(errorMsg, '<79>Feb 13 23:31:30 localhost kill[91]: Error Message');
 
 var criticalMsg = presetProducer.crit({
     facility: 'local0',
@@ -120,7 +120,7 @@ var alertMsg = presetProducer.alert({
     date: new Date(1234567890000)
 });
 assert.ok(alertMsg);
-assert.equal(alertMsg, '<121>Feb 13 23:31:30 localhost kill[91]: Alert Message');
+assert.equal(alertMsg, '<73>Feb 13 23:31:30 localhost kill[91]: Alert Message');
 
 var emergencyMsg = presetProducer.emergency({
     facility: 'news',
