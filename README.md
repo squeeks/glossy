@@ -33,9 +33,8 @@ generating all messages as newer, RFC 5424 format. This might break consumers or
 relays not expecting it.
 
     var syslogProducer = require('glossy').Produce; // or wherever glossy lives
-    var glossy = new syslog.Producer({ type: 'BSD' });
 
-    var msg = glossy.produce({
+    var msg = syslogProducer.produce({
         facility: 'local4', // these can either be a valid integer, 
         severity: 'error',  // or a relevant string
         host: 'localhost',
@@ -47,7 +46,7 @@ relays not expecting it.
 
 Again, you can specify a callback for the second argument.
 
-    var msg = glossy.produce({
+    var msg = syslogProducer.produce({
         facility: 'ntp', 
         severity: 'info',
         host: 'localhost',
@@ -60,7 +59,7 @@ Again, you can specify a callback for the second argument.
 In addition, you can also predefined most of the values when you create the
 object, to save having to repeat yourself:
 
-    var glossy = new syslog.Producer({
+    var syslogProducer = new require('glossy').Produce({
         type: 'BSD',
         facility: 'ftp',
         pid: 42,
@@ -72,7 +71,7 @@ with the definition in [Section 7, RFC5424](http://tools.ietf.org/html/rfc5424#s
 regarding names - keep them unique and your own custom keys should have at least
 an @ sign.
 
-    var msg = glossy.produce({
+    var msg = syslogProducer.produce({
         facility: 'local4', 
         severity: 'error',
         host: 'localhost',
