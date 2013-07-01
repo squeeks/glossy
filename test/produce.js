@@ -150,3 +150,12 @@ var structuredMsg = syslogProducer.produce({
 
 assert.ok(structuredMsg);
 assert.equal(structuredMsg, '<163>1 2009-02-13T23:31:30.00Z mymachine.example.com evntslog - ID47 [exampleSDID@32473 iut="3" eventSource="Application" eventID="1011"] BOMAn application event log entry...');
+
+var messageWithOneDigitDate = presetProducer.emergency({
+    facility: 'news',
+    message: 'Emergency Message',
+    pid: 91,
+    date: new Date(1233531090000)
+});
+assert.ok(messageWithOneDigitDate);
+assert.equal(messageWithOneDigitDate, '<56>Feb  1 23:31:30 localhost kill[91]: Emergency Message');
