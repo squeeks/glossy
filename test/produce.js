@@ -142,14 +142,15 @@ var structuredMsg = syslogProducer.produce({
         'exampleSDID@32473': {
             'iut':         "3",
             'eventSource': "Application",
-            'eventID':     "1011"
+            'eventID':     "1011",
+            'seqNo':       "1"
         }
     },
     message: 'BOMAn application event log entry...'
 });
 
 assert.ok(structuredMsg);
-assert.equal(structuredMsg, '<163>1 2009-02-13T23:31:30.00Z mymachine.example.com evntslog - ID47 [exampleSDID@32473 iut="3" eventSource="Application" eventID="1011"] BOMAn application event log entry...');
+assert.equal(structuredMsg, '<163>1 2009-02-13T23:31:30.00Z mymachine.example.com evntslog - ID47 [exampleSDID@32473 iut="3" eventSource="Application" eventID="1011" seqNo="1"] BOMAn application event log entry...');
 
 var messageWithOneDigitDate = presetProducer.emergency({
     facility: 'news',
