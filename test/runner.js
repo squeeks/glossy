@@ -1,3 +1,6 @@
+// set timezone to UTC for tests
+process.env.TZ='UTC';
+
 var spawn = require('child_process').spawn,
        fs = require('fs'),
  exitCode = 0,
