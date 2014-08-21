@@ -1,5 +1,5 @@
-// set timezone to UTC for tests
-process.env.TZ='UTC';
+// set timezone to CET for tests
+process.env.TZ='CET';
 
 var spawn = require('child_process').spawn,
        fs = require('fs'),

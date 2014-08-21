@@ -46,7 +46,7 @@ syslogParser.parse(withCommand, function(parsedMessage){
     delete parsedMessage.time;
 
     assert.equal(parsedDate.getUTCMonth(), 9);
-    assert.equal(parsedDate.getUTCHours(), 22);
+    assert.equal(parsedDate.getUTCHours(), 20);
     assert.deepEqual(parsedMessage, expectedData);
 
 });
