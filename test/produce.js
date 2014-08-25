@@ -33,7 +33,7 @@ var msg = syslogProducer.produce({
     date: new Date(1234567890000),
     message: 'Test Message'
 });
-assert.equal(msg, "<163>1 2009-02-13T23:31:30.00Z localhost sudo 123 - - Test Message",'Valid message returned');
+assert.equal(msg, "<163>1 2009-02-13T23:31:30.00+01:00 localhost sudo 123 - - Test Message",'Valid message returned');
 
 syslogProducer.produce({
     facility: 'audit',
@@ -44,7 +44,7 @@ syslogProducer.produce({
     date: new Date(1234567890000),
     message: 'Test Message'
 }, function(cbMsg) {
-    assert.equal(cbMsg, '<107>1 2009-02-13T23:31:30.00Z 127.0.0.1 sudo 419 - - Test Message', 'Valid message in callback returned');
+    assert.equal(cbMsg, '<107>1 2009-02-13T23:31:30.00+01:00 127.0.0.1 sudo 419 - - Test Message', 'Valid message in callback returned');
 });
 
 BSDProducer.produce({
@@ -56,7 +56,7 @@ BSDProducer.produce({
     date: new Date(1234567890000),
     message: 'Test Message'
 }, function(cbMsg){
-    assert.equal(cbMsg, '<107>Feb 13 23:31:30 127.0.0.1 sudo[419]: Test Message');
+    assert.equal(cbMsg, '<107>Feb 14 00:31:30 127.0.0.1 sudo[419]: Test Message');
 });
 
 var debugMsg = presetProducer.debug({
@@ -66,7 +66,7 @@ var debugMsg = presetProducer.debug({
     pid: 91
 });
 assert.ok(debugMsg);
-assert.equal(debugMsg, '<151>Feb 13 23:31:30 localhost kill[91]: Debug Message');
+assert.equal(debugMsg, '<151>Feb 14 00:31:30 localhost kill[91]: Debug Message');
 
 var infoMsg = presetProducer.info({
     facility: 'ntp',
@@ -75,7 +75,7 @@ var infoMsg = presetProducer.info({
     date: new Date(1234567890000)
 });
 assert.ok(infoMsg);
-assert.equal(infoMsg, '<102>Feb 13 23:31:30 localhost kill[42]: Info Message');
+assert.equal(infoMsg, '<102>Feb 14 00:31:30 localhost kill[42]: Info Message');
 
 var noticeMsg = presetProducer.debug({
     facility: 'local2',
@@ -84,7 +84,7 @@ var noticeMsg = presetProducer.debug({
     date: new Date(1234567890000)
 });
 assert.ok(noticeMsg);
-assert.equal(noticeMsg, '<151>Feb 13 23:31:30 localhost kill[16]: Notice Message');
+assert.equal(noticeMsg, '<151>Feb 14 00:31:30 localhost kill[16]: Notice Message');
 
 var warnMsg = presetProducer.debug({
     facility: 'local4',
@@ -93,7 +93,7 @@ var warnMsg = presetProducer.debug({
     date: new Date(1234567890000)
 });
 assert.ok(warnMsg);
-assert.equal(warnMsg, '<167>Feb 13 23:31:30 localhost kill[91]: Warning Message');
+assert.equal(warnMsg, '<167>Feb 14 00:31:30 localhost kill[91]: Warning Message');
 
 var errorMsg = presetProducer.debug({
     facility: 'clock',
@@ -102,7 +102,7 @@ var errorMsg = presetProducer.debug({
     date: new Date(1234567890000)
 });
 assert.ok(errorMsg);
-assert.equal(errorMsg, '<79>Feb 13 23:31:30 localhost kill[91]: Error Message');
+assert.equal(errorMsg, '<79>Feb 14 00:31:30 localhost kill[91]: Error Message');
 
 var criticalMsg = presetProducer.crit({
     facility: 'local0',
@@ -111,7 +111,7 @@ var criticalMsg = presetProducer.crit({
     date: new Date(1234567890000)
 });
 assert.ok(criticalMsg);
-assert.equal(criticalMsg, '<130>Feb 13 23:31:30 localhost kill[91]: Critical Message');
+assert.equal(criticalMsg, '<130>Feb 14 00:31:30 localhost kill[91]: Critical Message');
 
 var alertMsg = presetProducer.alert({
     facility: 'clock',
@@ -120,7 +120,7 @@ var alertMsg = presetProducer.alert({
     date: new Date(1234567890000)
 });
 assert.ok(alertMsg);
-assert.equal(alertMsg, '<73>Feb 13 23:31:30 localhost kill[91]: Alert Message');
+assert.equal(alertMsg, '<73>Feb 14 00:31:30 localhost kill[91]: Alert Message');
 
 var emergencyMsg = presetProducer.emergency({
     facility: 'news',
@@ -129,7 +129,7 @@ var emergencyMsg = presetProducer.emergency({
     date: new Date(1234567890000)
 });
 assert.ok(emergencyMsg);
-assert.equal(emergencyMsg, '<56>Feb 13 23:31:30 localhost kill[91]: Emergency Message');
+assert.equal(emergencyMsg, '<56>Feb 14 00:31:30 localhost kill[91]: Emergency Message');
 
 var structuredMsg = syslogProducer.produce({
     facility: 'local4',
@@ -142,14 +142,15 @@ var structuredMsg = syslogProducer.produce({
         'exampleSDID@32473': {
             'iut':         "3",
             'eventSource': "Application",
-            'eventID':     "1011"
+            'eventID':     "1011",
+            'seqNo':       "1"
         }
     },
     message: 'BOMAn application event log entry...'
 });
 
 assert.ok(structuredMsg);
-assert.equal(structuredMsg, '<163>1 2009-02-13T23:31:30.00Z mymachine.example.com evntslog - ID47 [exampleSDID@32473 iut="3" eventSource="Application" eventID="1011"] BOMAn application event log entry...');
+assert.equal(structuredMsg, '<163>1 2009-02-13T23:31:30.00+01:00 mymachine.example.com evntslog - ID47 [exampleSDID@32473 iut="3" eventSource="Application" eventID="1011" seqNo="1"] BOMAn application event log entry...');
 
 var messageWithOneDigitDate = presetProducer.emergency({
     facility: 'news',
@@ -158,4 +159,4 @@ var messageWithOneDigitDate = presetProducer.emergency({
     date: new Date(1233531090000)
 });
 assert.ok(messageWithOneDigitDate);
-assert.equal(messageWithOneDigitDate, '<56>Feb  1 23:31:30 localhost kill[91]: Emergency Message');
+assert.equal(messageWithOneDigitDate, '<56>Feb  2 00:31:30 localhost kill[91]: Emergency Message');

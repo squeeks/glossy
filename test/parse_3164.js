@@ -1,10 +1,16 @@
 var syslogParser = require('../lib/glossy/parse.js'),
+ syslogGenerator = require('../lib/glossy/produce.js'),
           assert = require('assert');
 
 assert.ok(syslogParser, 'parser loaded');
 
+var gen = new syslogGenerator({type: 'bsd'});
+
 var doubleSpaced = "<13>Feb  5 17:32:18 10.0.0.99 Use the BFG!";
 syslogParser.parse(doubleSpaced, function(parsedMessage){
+    var msg = gen.produce(parsedMessage);
+    assert.equal(doubleSpaced, msg);    
+
     var expectedData = { 
         originalMessage: doubleSpaced,
         prival: 13,
@@ -15,8 +21,11 @@ syslogParser.parse(doubleSpaced, function(parsedMessage){
         type: 'RFC3164',
         host: '10.0.0.99',
         message: 'Use the BFG!' };
-    
+
+    delete parsedMessage.date;
     delete parsedMessage.time;
+    delete parsedMessage.timestamp;
+
     assert.deepEqual(parsedMessage, expectedData);
 });
 
@@ -37,7 +46,7 @@ syslogParser.parse(withCommand, function(parsedMessage){
     delete parsedMessage.time;
 
     assert.equal(parsedDate.getUTCMonth(), 9);
-    assert.equal(parsedDate.getUTCHours(), 21);
+    assert.equal(parsedDate.getUTCHours(), 20);
     assert.deepEqual(parsedMessage, expectedData);
 
 });
