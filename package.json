@@ -1,6 +1,6 @@
 {
     "name"        : "glossy",
-    "version"     : "0.1.6",
+    "version"     : "0.1.7",
     "description" : "Syslog parser and producer",
     "keywords"    : ["syslog", "logging"],
     "url"         : "http://github.com/squeeks/glossy",
@@ -16,7 +16,8 @@
         { "name": "Stan Carney", "email": "stan.carney@rootsh.me" },
         { "name": "Alexander Metzner", "email": "alexander.metzner@thomann.de" },
         { "name": "zaphod1984", "email": "zaphod84@gmx.de" },
-        { "name": "Eric Cornelius", "email": "eric.cornelius@mandiant.com"}
+        { "name": "Eric Cornelius", "email": "eric.cornelius@mandiant.com" },
+        { "name": "horpto", email: "_singleton__@hackerdom.ru" }
     ],
     "directories" : {
 	"lib": "./lib",
