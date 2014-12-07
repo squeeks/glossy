@@ -17,7 +17,7 @@
         { "name": "Alexander Metzner", "email": "alexander.metzner@thomann.de" },
         { "name": "zaphod1984", "email": "zaphod84@gmx.de" },
         { "name": "Eric Cornelius", "email": "eric.cornelius@mandiant.com" },
-        { "name": "horpto", email: "_singleton__@hackerdom.ru" }
+        { "name": "horpto", "email": "_singleton__@hackerdom.ru" }
     ],
     "directories" : {
 	"lib": "./lib",
