@@ -33,7 +33,7 @@ var msg = syslogProducer.produce({
     date: new Date(1234567890000),
     message: 'Test Message'
 });
-assert.equal(msg, "<163>1 2009-02-13T23:31:30.00+01:00 localhost sudo 123 - - Test Message",'Valid message returned');
+assert.equal(msg, "<163>1 2009-02-13T23:31:30.000Z localhost sudo 123 - - Test Message",'Valid message returned');
 
 syslogProducer.produce({
     facility: 'audit',
@@ -44,7 +44,7 @@ syslogProducer.produce({
     date: new Date(1234567890000),
     message: 'Test Message'
 }, function(cbMsg) {
-    assert.equal(cbMsg, '<107>1 2009-02-13T23:31:30.00+01:00 127.0.0.1 sudo 419 - - Test Message', 'Valid message in callback returned');
+    assert.equal(cbMsg, '<107>1 2009-02-13T23:31:30.000Z 127.0.0.1 sudo 419 - - Test Message', 'Valid message in callback returned');
 });
 
 BSDProducer.produce({
@@ -150,7 +150,7 @@ var structuredMsg = syslogProducer.produce({
 });
 
 assert.ok(structuredMsg);
-assert.equal(structuredMsg, '<163>1 2009-02-13T23:31:30.00+01:00 mymachine.example.com evntslog - ID47 [exampleSDID@32473 iut="3" eventSource="Application" eventID="1011" seqNo="1"] BOMAn application event log entry...');
+assert.equal(structuredMsg, '<163>1 2009-02-13T23:31:30.000Z mymachine.example.com evntslog - ID47 [exampleSDID@32473 iut="3" eventSource="Application" eventID="1011" seqNo="1"] BOMAn application event log entry...');
 
 var messageWithOneDigitDate = presetProducer.emergency({
     facility: 'news',
